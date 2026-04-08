@@ -5,3 +5,16 @@ __pycache__/
 data/*.csv
 data/*.pdf
 ml/*.joblib
+# Environments and Cache
+venv/
+__pycache__/
+*.pyc
+
+# Malware Samples and Massive Reports
+cartel_samples/
+evasive_samples/
+threat_reports/
+temp_*.apk
+
+# Secrets
+.env

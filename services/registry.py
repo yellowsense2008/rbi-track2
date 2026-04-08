@@ -1,9 +1,60 @@
 import pdfplumber
 import pandas as pd
+import os
 from difflib import SequenceMatcher
 
-NBFC_CSV_PATH = "data/nbfc_list.csv"
-NBFC_PDF_PATH = "data/nbfc_list.pdf"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+
+NBFC_CSV_PATH = os.path.join(BASE_DIR, "data", "nbfc_list.csv")
+NBFC_PDF_PATH = os.path.join(BASE_DIR, "data", "nbfc_list.pdf")
+ARC_FILE_PATH = os.path.join(BASE_DIR, "data", "ARC_list.csv")
+ARC_NAMES = []
+
+if os.path.exists(ARC_FILE_PATH):
+    try:
+        arc_df = pd.read_csv(ARC_FILE_PATH)
+        
+        # 1. Clean up the headers to destroy hidden spaces or weird capitalization
+        arc_df.columns = arc_df.columns.astype(str).str.strip().str.lower()
+        
+        # 2. Dynamically hunt for the column containing the names
+        target_col = None
+        for col in arc_df.columns:
+            if 'name' in col or 'nbfc' in col or 'company' in col or 'entity' in col:
+                target_col = col
+                break
+                
+        # 3. Fallback: If headers are missing, grab the second column (usually the Name after ID)
+        if not target_col and len(arc_df.columns) > 1:
+            target_col = arc_df.columns[1]
+        elif not target_col:
+            target_col = arc_df.columns[0]
+            
+        if target_col:
+            ARC_NAMES = arc_df[target_col].dropna().astype(str).str.lower().str.strip().tolist()
+            print(f"[*] Loaded {len(ARC_NAMES)} ARCs from column '{target_col}'")
+            
+    except Exception as e:
+        print(f"[*] WARNING: Could not load ARCs list. {e}")
+
+# 2. The Kill Switch Function
+def is_arc_killswitch(developer_name: str) -> dict:
+    """
+    Checks if the developer name claims to be an Asset Reconstruction Company.
+    ARCs are legally barred from issuing retail loans.
+    """
+    if not developer_name or not ARC_NAMES:
+        return {"is_arc": False, "matched_name": None}
+        
+    clean_dev_name = developer_name.lower().strip()
+    
+    # Check for direct or partial matches
+    for arc in ARC_NAMES:
+        # If the scraped name is inside the official ARC name, or vice versa
+        if clean_dev_name in arc or arc in clean_dev_name:
+            return {"is_arc": True, "matched_name": arc.title()}
+            
+    return {"is_arc": False, "matched_name": None}
 
 def parse_nbfc_pdf():
     rows = []

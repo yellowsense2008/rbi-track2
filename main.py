@@ -3,7 +3,7 @@ from routers import analyze, alerts
 
 app = FastAPI(
     title="AppGuard AI",
-    description="Fake Banking & Digital Lending App Detection - RBI HaRBInger 2025",
+    description="Yellowsense presents Fake Banking & Digital Lending App Detection - RBI HaRBInger 2025",
     version="0.1.0"
 )
 
