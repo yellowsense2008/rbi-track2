@@ -34,10 +34,10 @@ def get_hf_similarity_scores(source: str, targets: list) -> list:
     """
     Sends texts to Hugging Face to calculate semantic similarity on their GPUs.
     """
-    if not source or not targets or not HF_API_TOKEN.startswith("hf_"):
+    if not source or not targets or not HF_TOKEN or not HF_TOKEN.startswith("hf_"):
         return []
 
-    headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
+    headers = {"Authorization": f"Bearer {HF_TOKEN}"}
     
     # The exact payload structure the HF Sentence Similarity pipeline demands
     payload = {
