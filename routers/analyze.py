@@ -21,6 +21,7 @@ from services.mobsf_sandbox import detonate_in_sandbox
 from services.financial_tracker import extract_financial_arteries
 from services.assetlink_verifier import verify_assetlinks
 from services.kfs_scanner import scan_for_kfs_osint
+from services.scorer import KNOWN_LEGITIMATE_BANKS
 
 router = APIRouter()
 
@@ -49,6 +50,19 @@ async def analyze_unified_pipeline(
         analysis_engine = "None (App not found on Play Store)"
         custom_features = {}
         anomaly_result = {"is_anomaly": False, "interpretation": "N/A"}
+
+        # Known legitimate scheduled commercial banks
+        # These are full banking apps, not DLAs - different regulatory framework applies
+        SCHEDULED_BANKS = [
+            "aubank", "au small finance", "sbi", "hdfc", "icici", "axis",
+            "kotak", "pnb", "bob", "canara", "union bank", "indusind",
+            "yes bank", "idfc", "federal bank", "rbl", "bandhan",
+            "equitas", "ujjivan", "esaf", "suryoday", "utkarsh"
+        ]
+
+        def is_scheduled_bank_app(package_id: str, app_name: str, developer: str) -> bool:
+            check_text = f"{package_id} {app_name} {developer}".lower()
+            return any(bank in check_text for bank in SCHEDULED_BANKS)
 
         # 1. Extract APK Blueprint (Static Engine)
         parser_result = parse_apk_manifest(temp_file_path)
@@ -95,6 +109,25 @@ async def analyze_unified_pipeline(
         # 3. The Ghost Scrape (Internet Analysis)
         scraped_data = fetch_app_metadata(package_id)
 
+        developer_lower = (scraped_data.get("developer") or "").lower()
+        title_lower = (scraped_data.get("title") or "").lower()
+        for bank in KNOWN_LEGITIMATE_BANKS:
+            if bank in developer_lower or bank in title_lower:
+                is_bank_app = True
+                break
+
+        # If this is a known scheduled commercial bank app, suppress DLA-specific penalties
+        is_bank_app = is_scheduled_bank_app(
+            package_id,
+            scraped_data.get("title", ""),
+            scraped_data.get("developer", "")
+        )
+
+        if is_bank_app:
+            # Don't apply DLA permission rules or Ghost penalty to full banking apps
+            parser_result["violation_flags"] = []
+            parser_result["regulatory_risk_score"] = 0.0
+
         if not scraped_data.get("error") and scraped_data.get("title"):
             
             # 4. OSINT Domain Analysis
@@ -105,7 +138,7 @@ async def analyze_unified_pipeline(
             if domain_age_days > 0 and domain_age_days < 90:
                 osint_penalty = 0.20
                 osint_flags.append(f"Domain registered only {domain_age_days} days ago.")
-            elif domain_age_days == -1:
+            elif domain_age_days == -1 and not is_bank_app:
                 osint_penalty = 0.10
                 osint_flags.append("No valid developer website provided.")
 
@@ -138,21 +171,21 @@ async def analyze_unified_pipeline(
                 flag = f"OSINT FINGERPRINT: Entity claims financial status but uses a free email ({dev_email}). High probability of burner account."
                 osint_flags.append(flag)
             
-            # --- THE CRYPTOGRAPHIC ASSETLINKS CHECK ---
-            if developer_website and developer_website != "N/A":
+            if developer_website and developer_website != "N/A" and not is_bank_app:
                 asset_check = verify_assetlinks(developer_website, package_id)
                 if asset_check["status"] == "failed":
                     feature_penalty += 0.40
                     custom_features["assetlinks_failed"] = True
-                    flag = f"CRYPTOGRAPHIC MISMATCH: The official domain ({developer_website}) does not authorize this app. High probability of stolen identity."
+                    flag = f"CRYPTOGRAPHIC MISMATCH: The official domain ({developer_website}) does not authorize this app."
                     osint_flags.append(flag)
 
-            kfs_result = scan_for_kfs_osint(scraped_data.get("description", ""), developer_website)
-            if not kfs_result["compliant"]:
-                feature_penalty += 0.20
-                custom_features["kfs_missing"] = True
-                osint_flags.append(kfs_result["flag"])
-                print(f"[*] {kfs_result['flag']}")  
+            if not is_bank_app:
+                kfs_result = scan_for_kfs_osint(scraped_data.get("description", ""), developer_website)
+                if not kfs_result["compliant"]:
+                    feature_penalty += 0.20
+                    custom_features["kfs_missing"] = True
+                    osint_flags.append(kfs_result["flag"])
+
 
             # --- THE ARC KILL SWITCH ---
             arc_check = is_arc_killswitch(scraped_data.get("developer", ""))
@@ -277,6 +310,19 @@ async def analyze_unified_from_link(
         custom_features = {}
         anomaly_result = {"is_anomaly": False, "interpretation": "N/A"}
 
+        # Known legitimate scheduled commercial banks
+        # These are full banking apps, not DLAs - different regulatory framework applies
+        SCHEDULED_BANKS = [
+            "aubank", "au small finance", "sbi", "hdfc", "icici", "axis",
+            "kotak", "pnb", "bob", "canara", "union bank", "indusind",
+            "yes bank", "idfc", "federal bank", "rbl", "bandhan",
+            "equitas", "ujjivan", "esaf", "suryoday", "utkarsh"
+        ]
+
+        def is_scheduled_bank_app(package_id: str, app_name: str, developer: str) -> bool:
+            check_text = f"{package_id} {app_name} {developer}".lower()
+            return any(bank in check_text for bank in SCHEDULED_BANKS)
+
         # 1. Extract APK Blueprint
         parser_result = parse_apk_manifest(temp_file_path)
         if parser_result.get("status") == "error":
@@ -313,7 +359,7 @@ async def analyze_unified_from_link(
                 "threat_intelligence": saved_static_data.get("threat_intelligence", {}),
                 "engines_firing": saved_static_data.get("engines_firing", [])
             }
-        
+              
         # 2. XGBoost ML Engine
         feature_vector = create_permission_vector(parser_result.get("raw_permissions", []))
         ai_result = predict_apk_risk(feature_vector)
@@ -321,6 +367,25 @@ async def analyze_unified_from_link(
         
         # 3. The Ghost Scrape
         scraped_data = fetch_app_metadata(package_id)
+
+        developer_lower = (scraped_data.get("developer") or "").lower()
+        title_lower = (scraped_data.get("title") or "").lower()
+        for bank in KNOWN_LEGITIMATE_BANKS:
+            if bank in developer_lower or bank in title_lower:
+                is_bank_app = True
+                break
+
+        # If this is a known scheduled commercial bank app, suppress DLA-specific penalties
+        is_bank_app = is_scheduled_bank_app(
+            package_id,
+            scraped_data.get("title", ""),
+            scraped_data.get("developer", "")
+        )
+
+        if is_bank_app:
+            # Don't apply DLA permission rules or Ghost penalty to full banking apps
+            parser_result["violation_flags"] = []
+            parser_result["regulatory_risk_score"] = 0.0
 
         if not scraped_data.get("error") and scraped_data.get("title"):
             
@@ -332,7 +397,7 @@ async def analyze_unified_from_link(
             if domain_age_days > 0 and domain_age_days < 90:
                 osint_penalty = 0.20
                 osint_flags.append(f"Domain registered only {domain_age_days} days ago.")
-            elif domain_age_days == -1:
+            elif domain_age_days == -1 and not is_bank_app:
                 osint_penalty = 0.10
                 osint_flags.append("No valid developer website provided.")
 
@@ -365,20 +430,20 @@ async def analyze_unified_from_link(
                 osint_flags.append(flag)
 
             # --- THE CRYPTOGRAPHIC ASSETLINKS CHECK ---
-            if developer_website and developer_website != "N/A":
+            if developer_website and developer_website != "N/A" and not is_bank_app:
                 asset_check = verify_assetlinks(developer_website, package_id)
                 if asset_check["status"] == "failed":
                     feature_penalty += 0.40
                     custom_features["assetlinks_failed"] = True
-                    flag = f"CRYPTOGRAPHIC MISMATCH: The official domain ({developer_website}) does not authorize this app. High probability of stolen identity."
+                    flag = f"CRYPTOGRAPHIC MISMATCH: The official domain ({developer_website}) does not authorize this app."
                     osint_flags.append(flag)
             
-            kfs_result = scan_for_kfs_osint(scraped_data.get("description", ""), developer_website)
-            if not kfs_result["compliant"]:
-                feature_penalty += 0.20
-                custom_features["kfs_missing"] = True
-                osint_flags.append(kfs_result["flag"])
-                print(f"[*] {kfs_result['flag']}")
+            if not is_bank_app:
+                kfs_result = scan_for_kfs_osint(scraped_data.get("description", ""), developer_website)
+                if not kfs_result["compliant"]:
+                    feature_penalty += 0.20
+                    custom_features["kfs_missing"] = True
+                    osint_flags.append(kfs_result["flag"])
 
             # --- THE ARC KILL SWITCH ---
             arc_check = is_arc_killswitch(scraped_data.get("developer", ""))

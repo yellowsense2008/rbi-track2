@@ -18,3 +18,4 @@ temp_*.apk
 
 # Secrets
 .env
+*.apk
