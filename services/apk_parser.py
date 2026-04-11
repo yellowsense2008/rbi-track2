@@ -46,9 +46,16 @@ def parse_apk_manifest(apk_filepath):
                 regulatory_risk_score += 0.40
 
             elif perm in SUSPICIOUS_INDICATORS:
+                if 'SMS' in perm:
+                    detail = f"{perm} — legitimate apps use SMS Retriever API instead"
+                elif 'LOCATION' in perm:
+                    detail = f"{perm} — only one-time KYC access permitted under RBI 2025 Directions"
+                else:
+                    detail = f"{perm} — suspicious for a lending app"
+                
                 violation_flags.append({
                     "signal": f"Suspicious Permission: {perm.split('.')[-1]}",
-                    "detail": f"{perm} — legitimate apps use SMS Retriever API instead",
+                    "detail": detail,
                     "weight": 0.15
                 })
                 regulatory_risk_score += 0.15

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import analyze, alerts
+from routers import analyze, alerts, pdf_report
 
 app = FastAPI(
     title="AppGuard AI",
@@ -9,6 +9,7 @@ app = FastAPI(
 
 app.include_router(analyze.router, prefix="/api/v1", tags=["Analysis"])
 app.include_router(alerts.router, prefix="/api/v1", tags=["Alerts"])
+app.include_router(pdf_report.router, prefix="/api/v1", tags=["Reports"])
 
 @app.get("/health")
 def health():
