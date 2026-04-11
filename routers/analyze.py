@@ -306,7 +306,7 @@ async def analyze_unified_from_link(
         # INITIALIZE VARIABLES
         nlp_score, osint_penalty, anomaly_score, feature_penalty = 0.0, 0.0, 0.0, 0.0
         nlp_flags, osint_flags = [], []
-        analysis_engine = "None (App not found on Play Store)"
+        analysis_engine = "Ghost App Detection Engine (Sideloaded APK)"
         custom_features = {}
         anomaly_result = {"is_anomaly": False, "interpretation": "N/A"}
 
