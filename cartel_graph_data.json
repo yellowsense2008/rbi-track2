@@ -3,417 +3,162 @@
         {
             "id": "com.jaiho.fun.games",
             "type": "apk",
-            "label": "fakeapp13.apk"
-        },
-        {
-            "id": "www.openssl.org",
-            "type": "domain",
-            "label": "www.openssl.org"
-        },
-        {
-            "id": "www.apple.com",
-            "type": "domain",
-            "label": "www.apple.com"
-        },
-        {
-            "id": "pagead2.googlesyndication.com",
-            "type": "domain",
-            "label": "pagead2.googlesyndication.com"
-        },
-        {
-            "id": "plus.google.com",
-            "type": "domain",
-            "label": "plus.google.com"
-        },
-        {
-            "id": "crbug.com",
-            "type": "domain",
-            "label": "crbug.com"
+            "label": "fakeapp13.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "happyace.casino.scccccb",
             "type": "apk",
-            "label": "fakeapp14.apk"
-        },
-        {
-            "id": "app.s",
-            "type": "domain",
-            "label": "app.s"
-        },
-        {
-            "id": "cdn8.test.highrummy.online",
-            "type": "domain",
-            "label": "cdn8.test.highrummy.online"
-        },
-        {
-            "id": "gdpr.s",
-            "type": "domain",
-            "label": "gdpr.s"
-        },
-        {
-            "id": "ssrv.adjust.com",
-            "type": "domain",
-            "label": "ssrv.adjust.com"
-        },
-        {
-            "id": "gdpr.adjust.io",
-            "type": "domain",
-            "label": "gdpr.adjust.io"
+            "label": "fakeapp14.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "com.realdwtb.namastegameb",
             "type": "apk",
-            "label": "fakeapp7.apk"
-        },
-        {
-            "id": "app.adjust.net.in",
-            "type": "domain",
-            "label": "app.adjust.net.in"
-        },
-        {
-            "id": "github.com",
-            "type": "domain",
-            "label": "github.com"
-        },
-        {
-            "id": "gdpr.adjust.world",
-            "type": "domain",
-            "label": "gdpr.adjust.world"
-        },
-        {
-            "id": "gdpr.us.adjust.com",
-            "type": "domain",
-            "label": "gdpr.us.adjust.com"
-        },
-        {
-            "id": "api.whatsapp.com",
-            "type": "domain",
-            "label": "api.whatsapp.com"
+            "label": "fakeapp7.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "com.balancehero.truebalance",
             "type": "apk",
-            "label": "fakeapp4.apk"
-        },
-        {
-            "id": "swasrec2.npci.org.in",
-            "type": "domain",
-            "label": "swasrec2.npci.org.in"
-        },
-        {
-            "id": "monnai.com",
-            "type": "domain",
-            "label": "monnai.com"
-        },
-        {
-            "id": "s3.ap-south-1.amazonaws.com",
-            "type": "domain",
-            "label": "s3.ap-south-1.amazonaws.com"
-        },
-        {
-            "id": "smonitorsdk.s",
-            "type": "domain",
-            "label": "smonitorsdk.s"
-        },
-        {
-            "id": "sstats.s",
-            "type": "domain",
-            "label": "sstats.s"
+            "label": "fakeapp4.apk",
+            "verdict": "HIGH",
+            "risk_score": 0.858
         },
         {
             "id": "com.teenpatti.luck",
             "type": "apk",
-            "label": "fakeapp11.apk"
+            "label": "fakeapp11.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "api.gogosky.in",
             "type": "domain",
-            "label": "api.gogosky.in"
+            "label": "api.gogosky.in",
+            "classification": "SUSPICIOUS"
         },
         {
             "id": "reinvents.rummaging.monitor",
             "type": "apk",
-            "label": "fakeapp8.apk"
+            "label": "fakeapp8.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "jd.foxuc.net",
             "type": "domain",
-            "label": "jd.foxuc.net"
+            "label": "jd.foxuc.net",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "com.micredit.in.gp",
             "type": "apk",
-            "label": "fakeapp6.apk"
+            "label": "fakeapp6.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "register.xmpush.global.xiaomi.com",
             "type": "domain",
-            "label": "register.xmpush.global.xiaomi.com"
+            "label": "register.xmpush.global.xiaomi.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "act.account.xiaomi.com",
             "type": "domain",
-            "label": "act.account.xiaomi.com"
-        },
-        {
-            "id": "api.mixpanel.com",
-            "type": "domain",
-            "label": "api.mixpanel.com"
+            "label": "act.account.xiaomi.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "happyace.casino.official.apk0",
             "type": "apk",
-            "label": "fakeapp15.apk"
-        },
-        {
-            "id": "app.adjust.world",
-            "type": "domain",
-            "label": "app.adjust.world"
+            "label": "fakeapp15.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "rqd.uu.qq.com",
             "type": "domain",
-            "label": "rqd.uu.qq.com"
+            "label": "rqd.uu.qq.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "com.snt.mudrakwik",
             "type": "apk",
-            "label": "fakeapp3.apk"
-        },
-        {
-            "id": "purl.org",
-            "type": "domain",
-            "label": "purl.org"
-        },
-        {
-            "id": "acs.icicibank.com",
-            "type": "domain",
-            "label": "acs.icicibank.com"
-        },
-        {
-            "id": "cipa.jp",
-            "type": "domain",
-            "label": "cipa.jp"
-        },
-        {
-            "id": "www.kotak.com",
-            "type": "domain",
-            "label": "www.kotak.com"
-        },
-        {
-            "id": "xerces.apache.org",
-            "type": "domain",
-            "label": "xerces.apache.org"
+            "label": "fakeapp3.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "com.iiflfinance.mymoney",
             "type": "apk",
-            "label": "fakeapp5.apk"
-        },
-        {
-            "id": "apac-faceid.hyperverge.co",
-            "type": "domain",
-            "label": "apac-faceid.hyperverge.co"
-        },
-        {
-            "id": "facebook.com",
-            "type": "domain",
-            "label": "facebook.com"
+            "label": "fakeapp5.apk",
+            "verdict": "MEDIUM",
+            "risk_score": 0.325
         },
         {
             "id": "api.overwatch.stg.bureau.id",
             "type": "domain",
-            "label": "api.overwatch.stg.bureau.id"
+            "label": "api.overwatch.stg.bureau.id",
+            "classification": "STAGING_IN_PRODUCTION"
         },
         {
             "id": "com.march03.mama567july25",
             "type": "apk",
-            "label": "fakeapp10.apk"
-        },
-        {
-            "id": "flutter.dev",
-            "type": "domain",
-            "label": "flutter.dev"
-        },
-        {
-            "id": "issuetracker.google.com",
-            "type": "domain",
-            "label": "issuetracker.google.com"
-        },
-        {
-            "id": "defaultlink.com",
-            "type": "domain",
-            "label": "defaultlink.com"
-        },
-        {
-            "id": "fonts.gstatic.com",
-            "type": "domain",
-            "label": "fonts.gstatic.com"
-        },
-        {
-            "id": "api.flutter.dev",
-            "type": "domain",
-            "label": "api.flutter.dev"
+            "label": "fakeapp10.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "com.from.outside",
             "type": "apk",
-            "label": "fakeapp1.apk"
+            "label": "fakeapp1.apk",
+            "verdict": "HIGH",
+            "risk_score": 1.0
         },
         {
             "id": "loc.map.baidu.com",
             "type": "domain",
-            "label": "loc.map.baidu.com"
+            "label": "loc.map.baidu.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "pv.sohu.com",
             "type": "domain",
-            "label": "pv.sohu.com"
+            "label": "pv.sohu.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "ip.chinaz.com",
             "type": "domain",
-            "label": "ip.chinaz.com"
+            "label": "ip.chinaz.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "ofloc.map.baidu.com",
             "type": "domain",
-            "label": "ofloc.map.baidu.com"
+            "label": "ofloc.map.baidu.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         },
         {
             "id": "itsdata.map.baidu.com",
             "type": "domain",
-            "label": "itsdata.map.baidu.com"
+            "label": "itsdata.map.baidu.com",
+            "classification": "CHINESE_INFRASTRUCTURE"
         }
     ],
     "edges": [
-        {
-            "source": "com.jaiho.fun.games",
-            "target": "www.openssl.org"
-        },
-        {
-            "source": "com.jaiho.fun.games",
-            "target": "www.apple.com"
-        },
-        {
-            "source": "com.jaiho.fun.games",
-            "target": "pagead2.googlesyndication.com"
-        },
-        {
-            "source": "com.jaiho.fun.games",
-            "target": "plus.google.com"
-        },
-        {
-            "source": "com.jaiho.fun.games",
-            "target": "crbug.com"
-        },
-        {
-            "source": "happyace.casino.scccccb",
-            "target": "app.s"
-        },
-        {
-            "source": "happyace.casino.scccccb",
-            "target": "cdn8.test.highrummy.online"
-        },
-        {
-            "source": "happyace.casino.scccccb",
-            "target": "gdpr.s"
-        },
-        {
-            "source": "happyace.casino.scccccb",
-            "target": "ssrv.adjust.com"
-        },
-        {
-            "source": "happyace.casino.scccccb",
-            "target": "gdpr.adjust.io"
-        },
-        {
-            "source": "com.realdwtb.namastegameb",
-            "target": "app.adjust.net.in"
-        },
-        {
-            "source": "com.realdwtb.namastegameb",
-            "target": "github.com"
-        },
-        {
-            "source": "com.realdwtb.namastegameb",
-            "target": "gdpr.adjust.world"
-        },
-        {
-            "source": "com.realdwtb.namastegameb",
-            "target": "gdpr.us.adjust.com"
-        },
-        {
-            "source": "com.realdwtb.namastegameb",
-            "target": "api.whatsapp.com"
-        },
-        {
-            "source": "com.balancehero.truebalance",
-            "target": "swasrec2.npci.org.in"
-        },
-        {
-            "source": "com.balancehero.truebalance",
-            "target": "monnai.com"
-        },
-        {
-            "source": "com.balancehero.truebalance",
-            "target": "s3.ap-south-1.amazonaws.com"
-        },
-        {
-            "source": "com.balancehero.truebalance",
-            "target": "smonitorsdk.s"
-        },
-        {
-            "source": "com.balancehero.truebalance",
-            "target": "sstats.s"
-        },
-        {
-            "source": "com.teenpatti.luck",
-            "target": "app.adjust.net.in"
-        },
-        {
-            "source": "com.teenpatti.luck",
-            "target": "github.com"
-        },
         {
             "source": "com.teenpatti.luck",
             "target": "api.gogosky.in"
         },
         {
-            "source": "com.teenpatti.luck",
-            "target": "gdpr.adjust.world"
-        },
-        {
-            "source": "com.teenpatti.luck",
-            "target": "gdpr.us.adjust.com"
-        },
-        {
-            "source": "reinvents.rummaging.monitor",
-            "target": "app.adjust.net.in"
-        },
-        {
-            "source": "reinvents.rummaging.monitor",
-            "target": "github.com"
-        },
-        {
-            "source": "reinvents.rummaging.monitor",
-            "target": "gdpr.adjust.world"
-        },
-        {
-            "source": "reinvents.rummaging.monitor",
-            "target": "gdpr.us.adjust.com"
-        },
-        {
             "source": "reinvents.rummaging.monitor",
             "target": "jd.foxuc.net"
-        },
-        {
-            "source": "com.micredit.in.gp",
-            "target": "swasrec2.npci.org.in"
-        },
-        {
-            "source": "com.micredit.in.gp",
-            "target": "s3.ap-south-1.amazonaws.com"
         },
         {
             "source": "com.micredit.in.gp",
@@ -424,108 +169,12 @@
             "target": "act.account.xiaomi.com"
         },
         {
-            "source": "com.micredit.in.gp",
-            "target": "api.mixpanel.com"
-        },
-        {
-            "source": "happyace.casino.official.apk0",
-            "target": "www.openssl.org"
-        },
-        {
-            "source": "happyace.casino.official.apk0",
-            "target": "app.adjust.net.in"
-        },
-        {
-            "source": "happyace.casino.official.apk0",
-            "target": "app.adjust.world"
-        },
-        {
             "source": "happyace.casino.official.apk0",
             "target": "rqd.uu.qq.com"
         },
         {
-            "source": "happyace.casino.official.apk0",
-            "target": "www.apple.com"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "purl.org"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "acs.icicibank.com"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "cipa.jp"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "www.kotak.com"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "xerces.apache.org"
-        },
-        {
-            "source": "com.iiflfinance.mymoney",
-            "target": "apac-faceid.hyperverge.co"
-        },
-        {
-            "source": "com.iiflfinance.mymoney",
-            "target": "s3.ap-south-1.amazonaws.com"
-        },
-        {
-            "source": "com.iiflfinance.mymoney",
-            "target": "github.com"
-        },
-        {
-            "source": "com.iiflfinance.mymoney",
-            "target": "facebook.com"
-        },
-        {
             "source": "com.iiflfinance.mymoney",
             "target": "api.overwatch.stg.bureau.id"
-        },
-        {
-            "source": "com.march03.mama567july25",
-            "target": "flutter.dev"
-        },
-        {
-            "source": "com.march03.mama567july25",
-            "target": "issuetracker.google.com"
-        },
-        {
-            "source": "com.march03.mama567july25",
-            "target": "defaultlink.com"
-        },
-        {
-            "source": "com.march03.mama567july25",
-            "target": "fonts.gstatic.com"
-        },
-        {
-            "source": "com.march03.mama567july25",
-            "target": "api.flutter.dev"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "purl.org"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "acs.icicibank.com"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "cipa.jp"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "www.kotak.com"
-        },
-        {
-            "source": "com.snt.mudrakwik",
-            "target": "xerces.apache.org"
         },
         {
             "source": "com.from.outside",
